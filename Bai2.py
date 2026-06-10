@@ -5,24 +5,26 @@
 # Dữ liệu từ API: (Tên, Số trận, MMR)
 data = [
     ("Levi", 120, 2500),      # Dữ liệu chuẩn
-    ("SofM", 150,2800),            # Lỗi API: Bị thiếu mất trường MMR (Tuple chỉ có 2 phần tử)
+    ("SofM", 150),            # Lỗi API: Bị thiếu mất trường MMR (Tuple chỉ có 2 phần tử)
     ("Optimus", 100, "N/A")   # Lỗi dữ liệu: Điểm MMR bị ghi chữ "N/A"
 ]
 
 # Hàm xử lý dồn cục, không có cơ chế bẫy lỗi
 def process(ds):
     print("--- BẢNG TÍNH THƯỞNG RP ---")
-    for p in ds:
-        print("Đang xử lý:", p)
-        t = p[0]
-        m = p[1]
-        r = p[2]  # Lấy điểm MMR
+    for player in ds:
+        print("Đang xử lý:", player)
+        name_player = p[0]
+        matchs = p[1]
+        rp_point = p[2]  # Lấy điểm MMR
         
         # Tính toán tiền thưởng
         try:
-            b = (m * 10) + (int(r) * 0.5)
-            print("Tuyển thủ", t, "nhận được", b, "RP")
+            bbr = (matchs * 10) + (int(rp_point) * 0.5)
+            print("Tuyển thủ", name_player, "nhận được", bbr, "RP")
         except ValueError:
-            print(f'Tuyển thủ {t} Lỗi - Dữ liệu MMR không hợp lệ')
+            print(f'Tuyển thủ {name_player} Lỗi - Dữ liệu MMR không hợp lệ')
+        except IndexError:
+            print(f'Tuyển thủ {name_player} Lỗi - Hồ sơ bị thiếu thông tin')
 # Chạy hệ thống
 process(data)
