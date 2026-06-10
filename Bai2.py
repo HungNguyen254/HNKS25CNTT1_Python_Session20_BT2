@@ -14,12 +14,13 @@ def process(ds):
     print("--- BẢNG TÍNH THƯỞNG RP ---")
     for player in ds:
         print("Đang xử lý:", player)
-        name_player = p[0]
-        matchs = p[1]
-        rp_point = p[2]  # Lấy điểm MMR
+        
         
         # Tính toán tiền thưởng
         try:
+            name_player = p[0]
+            matchs = p[1]
+            rp_point = p[2]  # Lấy điểm MMR
             bbr = (matchs * 10) + (int(rp_point) * 0.5)
             print("Tuyển thủ", name_player, "nhận được", bbr, "RP")
         except ValueError:
